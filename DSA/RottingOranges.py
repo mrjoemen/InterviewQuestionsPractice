@@ -17,6 +17,11 @@ input = [[2,1,1],   [[2,2,1],   [[2,2,2],   [[2,2,2],   [[2,2,2],
         minute 0                                        minute 4
 output = 4 
 
+T = O(n)
+S = O(n)
+
+link: https://www.youtube.com/watch?v=TzoDDOj60zE
+
 '''
 
 def rottingOranges(matrix):
