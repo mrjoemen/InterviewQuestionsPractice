@@ -20,23 +20,46 @@ output = 4
 '''
 
 def rottingOranges(matrix):
-    rotten = set()
-    fresh = set()
+    rotten = set() #these sets will contain the coordinates of all rotten oranges
+    fresh = set() #these sets will contain the coordinates of all fresh oranges
 
-    for i in range(0, len(matrix)):
-        for j in range(0, len(matrix[i])):
-            currentSpace = matrix[i][j]
+    for row in range(0, len(matrix)):
+        for column in range(0, len(matrix[row])):
+            currentSpace = matrix[row][column]
 
             if currentSpace == 1:
-                fresh.add(f"{i}{j}")
+                fresh.add(f"{row}{column}") # coors
             elif currentSpace == 2:
-                print("hello there")
-    return "Hi there"
+                rotten.add(f"{row}{column}")
+    minutes = 0
+    directions = [[0, 1], [1, 0], [-1, 0], [0, -1]] #down, right, left, up
+
+    while len(fresh) > 0: #while there are fresh oranges, check if we can infect
+        infected = set()
+
+        for coordinates in rotten:
+            x = int(coordinates[0]) #x-axis row
+            y = int(coordinates[1]) #y-axis column
+            for direction in directions:
+                nextX = x + direction[0]
+                nextY = y + direction[1]
+
+                if f"{nextX}{nextY}" in fresh:
+                    fresh.remove(f"{nextX}{nextY}")
+                    infected.add(f"{nextX}{nextY}")
+        if len(infected) == 0:
+            return -1
+
+        rotten = infected
+        minutes += 1
+    return minutes
     
 
 
 def main():
-    print(rottingOranges("helo"))
+    print(rottingOranges([[2,1,1], [1,1,0], [0,1,1]]))
+
+
 
 if __name__ == "__main__":
     main()
