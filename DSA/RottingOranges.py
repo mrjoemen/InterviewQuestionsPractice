@@ -29,10 +29,10 @@ def rottingOranges(matrix):
     fresh = set() #these sets will contain the coordinates of all fresh oranges
 
     for row in range(0, len(matrix)):
-        for column in range(0, len(matrix[row])):
+        for column in range(0, len(matrix[row])): #these for loops iterate throught the whole matrix
             currentSpace = matrix[row][column]
 
-            if currentSpace == 1:
+            if currentSpace == 1:  
                 fresh.add(f"{row}{column}") # coors
             elif currentSpace == 2:
                 rotten.add(f"{row}{column}")
@@ -55,10 +55,9 @@ def rottingOranges(matrix):
         if len(infected) == 0:
             return -1
 
-        rotten = infected
+        rotten = infected #set rotten equal to infected to keep the BFS going
         minutes += 1
     return minutes
-    
 
 
 def main():
